@@ -1,4 +1,8 @@
-# pt.py
+#!/usr/bin/env python
+# -*-mode: python; cording: utf-8 -*-
+# $Id: pt.py,v 1.1 2009/02/24 06:19:33 ikuta Exp $
+# Copyright (c) 2009 Yoshihito Ikuta All Rights Reserved.
+#
 # a porting project "aobench" by syoyo to Python
 
 import math

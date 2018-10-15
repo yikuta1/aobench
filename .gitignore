@@ -1,0 +1,24 @@
+# git ignore
+
+*.pyc
+*.ini
+*.pyo
+
+#
+*/build/
+*/absolate/
+old/
+build/
+tmp/
+temp/
+
+#
+ipch/
+
+#
+*.*#
+*.*~
+*~
+
+# for OSX
+.DS_Store

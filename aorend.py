@@ -255,17 +255,3 @@ def ao(path):
 
 	final_time = time.clock() - t
 	print "final time: " + str(final_time) + " seconds"
-
-def test():
-	global rimg
-
-	t = time.clock()
-	final_time = 0
-
-	rimg = [0] * (WIDTH * HEIGHT * 3)
-	init_scene()
-	rimg = render(WIDTH, HEIGHT, NSUBSAMPLES)
-
-	final_time = time.clock() - t
-	print "final time: " + str(final_time) + " seconds"
-	return 0

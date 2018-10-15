@@ -3,7 +3,7 @@
 
 def test_1():
     import aorend
-    print(ao)
+    #print(ao)
     aorend.ao('ao.ppm')
 
 def test_2():

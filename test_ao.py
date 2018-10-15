@@ -3,7 +3,8 @@
 
 def test_1():
     import ao
-    ao.test()
+    print(ao)
+    #ao.test()
 
 def test_2():
     a = 1

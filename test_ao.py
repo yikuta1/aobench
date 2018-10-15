@@ -4,7 +4,7 @@
 def test_1():
     import ao
     print(ao)
-    #ao.test()
+    ao.ao('ao.ppm')
 
 def test_2():
     a = 1

@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 def test_1():
-    import ao
+    import aorend
     print(ao)
-    ao.ao('ao.ppm')
+    aorend.ao('ao.ppm')
 
 def test_2():
     a = 1

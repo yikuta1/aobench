@@ -256,7 +256,7 @@ def ao(path):
 	final_time = time.clock() - t
 	print "final time: " + str(final_time) + " seconds"
 
-def render():
+def test():
 	global rimg
 
 	t = time.clock()

@@ -4,7 +4,7 @@
 
 import math
 import random
-import time
+# import time
 
 WIDTH = 256
 HEIGHT = 256
@@ -18,9 +18,11 @@ sphere3 = []
 plane = []
 rimg = []
 
+
 def vdot(v0, v1):
     c = v0[0] * v1[0] + v0[1] * v1[1] + v0[2] * v1[2]
     return c
+
 
 def vcross(v0, v1):
     c = [0] * 3
@@ -28,6 +30,7 @@ def vcross(v0, v1):
     c[1] = v0[2] * v1[0] - v0[0] * v1[2]
     c[2] = v0[0] * v1[1] - v0[1] * v1[0]
     return c
+
 
 def vnormalize(c):
     length = math.sqrt(vdot(c, c))
@@ -57,11 +60,13 @@ def ray_sphere_intersect(isect, ray, sphere):
             isect[2] = ro[1] + rd[1] * t
             isect[3] = ro[2] + rd[2] * t
 
-            n = vnormalize([isect[1] - sphere[0], isect[2] - sphere[1], isect[3] - sphere[2]])
+            n = vnormalize([isect[1] - sphere[0], isect[2] -
+                            sphere[1], isect[3] - sphere[2]])
             isect[4] = n[0]
             isect[5] = n[1]
             isect[6] = n[2]
     return isect
+
 
 def ray_plane_intersect(isect, ray, plane):
     ro = ray[0]
@@ -87,6 +92,7 @@ def ray_plane_intersect(isect, ray, plane):
         isect[5] = plane[4]
         isect[6] = plane[5]
     return isect
+
 
 def orthoBasis(basis, n):
     b2 = n
@@ -121,7 +127,8 @@ def ambient_occlusion(col, isect):
     nphi = NAO_SAMPLES
     eps = 0.0001
 
-    p = [isect[1] + eps * isect[4], isect[2] + eps * isect[5], isect[3] + eps * isect[6]]
+    p = [isect[1] + eps * isect[4], isect[2] +
+         eps * isect[5], isect[3] + eps * isect[6]]
 
     basis = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
     orthoBasis(basis, [isect[4], isect[5], isect[6]])
@@ -136,7 +143,7 @@ def ambient_occlusion(col, isect):
         for i in range(nphi):
             theta = math.sqrt(random.random())
             phi = 2.0 * math.pi * random.random()
-            #phi = 2.0 * 3.14159265358979323846 * random.random()
+            # phi = 2.0 * 3.14159265358979323846 * random.random()
 
             x = math.cos(phi) * theta
             y = math.sin(phi) * theta
@@ -163,6 +170,7 @@ def ambient_occlusion(col, isect):
     col[2] = occlusion
     return col
 
+
 def clamp(f):
     i = f * 255.5
     if (i < 0):
@@ -170,6 +178,7 @@ def clamp(f):
     if (i > 255):
         i = 255
     return i
+
 
 def render(w, h, nsubsamples):
     global sphere1
@@ -185,8 +194,10 @@ def render(w, h, nsubsamples):
         for x in range(w):
             for v in range(nsubsamples):
                 for u in range(nsubsamples):
-                    px = (x + (u / (float)(nsubsamples)) - (w / 2.0)) / (w / 2.0)
-                    py = -1 * (y + (v / (float)(nsubsamples)) - (h / 2.0)) / (h / 2.0)
+                    px = (x + (u / (float)(nsubsamples)) -
+                          (w / 2.0)) / (w / 2.0)
+                    py = -1 * (y + (v / (float)(nsubsamples)) -
+                               (h / 2.0)) / (h / 2.0)
                     ray0 = [0.0, 0.0, 0.0]
                     ray1 = vnormalize([px, py, -1.0])
                     ray = [ray0, ray1]
@@ -230,10 +241,10 @@ def saveppm(fname, w, h, rimg):
     fp = open(fname, 'w')
 
     fp.write('P3\n')
-    fp.write('%i %i\n'%(w, h))
+    fp.write('%i %i\n' % (w, h))
     fp.write('255\n')
     for i in range(w * h * 3):
-        fp.write('%i '%rimg[i])
+        fp.write('%i ' % rimg[i])
         if(0 == (i + 1) % 3):
             fp.write('\n')
     fp.close()
@@ -242,8 +253,8 @@ def saveppm(fname, w, h, rimg):
 def ao(path):
     global rimg
 
-    #t = time.clock()
-    #final_time = 0
+    # t = time.clock()
+    # final_time = 0
 
     rimg = [0] * (WIDTH * HEIGHT * 3)
     init_scene()
@@ -251,9 +262,10 @@ def ao(path):
 
     saveppm(path, WIDTH, HEIGHT, rimg)
 
-    #final_time = time.clock() - t
-    #print "final time: " + str(final_time) + " seconds"
+    # final_time = time.clock() - t
+    # print "final time: " + str(final_time) + " seconds"
     return 0
+
 
 if __name__ == '__main__':
     ao('./images/ao.ppm')
